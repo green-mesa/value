@@ -74,8 +74,8 @@ function set(el, val) {
       var vals = ('array' == typeOf(val) ? val : [val]), found;
       for (var i = 0, option; option = el.options[i]; i++) {
         found = 0;
-        for(var j = 0, v; v = vals[j]; j++){
-          found |= v === option.value
+        for (var j = 0, v; v = vals[j]; j++){
+          found |= v === option.value;
         }
         option.selected = (found === 1);
       }
