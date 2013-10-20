@@ -39,9 +39,11 @@ function get(el) {
       }
       break;
     case 'select':
+      var vals = [];
       for (var i = 0, option; option = el.options[i]; i++) {
-        if (option.selected) return option.value;
+        if (option.selected) vals.push(option.value);
       }
+      return (vals.length===1 ? vals[0] : vals);
       break;
     default:
       return el.value;
@@ -51,6 +53,7 @@ function get(el) {
 /**
  * Set `el`'s value.
  */
+
 
 function set(el, val) {
   switch (type(el)) {
@@ -68,8 +71,13 @@ function set(el, val) {
       }
       break;
     case 'select':
+      var vals = ('array' == typeOf(val) ? val : [val]), found;
       for (var i = 0, option; option = el.options[i]; i++) {
-        option.selected = option.value === val;
+        found = 0;
+        for(var j = 0, v; v = vals[j]; j++){
+          found |= v === option.value
+        }
+        option.selected = (found === 1);
       }
       break;
     default:

@@ -101,24 +101,58 @@ describe('radiogroups', function(){
 })
 
 describe('selects', function(){
-  it('should select an option', function(){
-    var el = dom('<select><option value="a"></option><option value="b"></option></select>');
-    value(el.get(0), 'b');
-    assert(true === el.find('option').get(1).selected);
-    assert('b' === value(el.get(0)));
-  })
 
-  describe('with a selected option', function(){
-    it('should return the options value', function(){
-      var el = dom('<select><option value="a"></option><option value="b" selected></option></select>');
+  describe('when selecting one', function(){
+
+    it('should select an option', function(){
+      var el = dom('<select><option value="a"></option><option value="b"></option></select>');
+      value(el.get(0), 'b');
+      assert(true === el.find('option').get(1).selected);
       assert('b' === value(el.get(0)));
     })
+
+    describe('with a selected option', function(){
+      it('should return the options value', function(){
+        var el = dom('<select><option value="a"></option><option value="b" selected></option></select>');
+        assert('b' === value(el.get(0)));
+      })
+    })
+
+    describe('without a selected option', function(){
+      it('should return the first options value', function(){
+        var el = dom('<select><option value="a"></option><option value="b"></option></select>');
+        assert('a' === value(el.get(0)));
+      })
+    })
+
   })
 
-  describe('without a selected option', function(){
-    it('should return the first options value', function(){
-      var el = dom('<select><option value="a"></option><option value="b"></option></select>');
-      assert('a' === value(el.get(0)));
+  describe('when selecting many', function(){
+    it('should select some options', function(){
+      var el = dom('<select multiple="multiple"><option value="a"></option><option value="b"></option><option value="c"></option></select>');
+      value(el.get(0), ['b', 'c']);
+      assert(true === el.find('option').get(1).selected);
+      assert(true === el.find('option').get(2).selected);
+      assert('b' === value(el.get(0))[0]);
+      assert('c' === value(el.get(0))[1]);
     })
+
+    describe('with a selected option', function(){
+      it('should return the options value', function(){
+        var el = dom('<select multiple="multiple"><option value="a"></option><option value="b" selected></option><option value="c" selected></option></select>');
+        assert('b' === value(el.get(0))[0]);
+        assert('c' === value(el.get(0))[1]);
+      })
+    })
+
+    describe('without a selected option', function(){
+      it('should return an empty array', function(){
+        var el = dom('<select multiple="multiple"><option value="a"></option><option value="b"></option><option value="c"></option></select>');
+        assert(0 === value(el.get(0)).length);
+      })
+
+    })
+
   })
+
 })
