@@ -1,6 +1,6 @@
 
 var assert = require('component-assert');
-var dom = require('component-dom');
+var dom = require('green-mesa-dom');
 var value = require('value');
 
 describe('text inputs', function(){
@@ -37,6 +37,14 @@ describe('checkboxes', function(){
   })
 
   describe('with a value', function(){
+    it('should only set true when the value matches', function(){
+      var el = dom('<input type="checkbox" value="accepted">');
+      value(el.get(0), "accepted");
+      assert('accepted' === value(el.get(0)));
+      assert(true === el.get(0).checked);
+      value(el.get(0), "not-accepted");;
+      assert(false === value(el.get(0)));
+    })
     it('should return the value', function(){
       var el = dom('<input type="checkbox" value="accepted">');
       value(el.get(0), true);;
@@ -65,6 +73,8 @@ describe('radios', function(){
       var el = dom('<input type="radio" value="a">');
       value(el.get(0), true);
       assert('a' === value(el.get(0)));
+      value(el.get(0), "b");
+      assert(false === value(el.get(0)));
     })
   })
 })

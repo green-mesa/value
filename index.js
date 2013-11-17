@@ -58,7 +58,7 @@ function set(el, val) {
   switch (type(el)) {
     case 'checkbox':
     case 'radio':
-      el.checked = (val == el.getAttribute('value'));
+      el.checked = (val === true ? true : (val == el.getAttribute('value')));
       break;
     case 'radiogroup':
       for (var i = 0, radio; radio = el[i]; i++) {
