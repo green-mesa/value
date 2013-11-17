@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -59,11 +58,7 @@ function set(el, val) {
   switch (type(el)) {
     case 'checkbox':
     case 'radio':
-      if (val) {
-        el.checked = true;
-      } else {
-        el.checked = false;
-      }
+      el.checked = (val == el.getAttribute('value'));
       break;
     case 'radiogroup':
       for (var i = 0, radio; radio = el[i]; i++) {
