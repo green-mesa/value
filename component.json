@@ -2,7 +2,7 @@
   "name": "value",
   "repo": "green-mesa/value",
   "description": "Set form input values",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "keywords": [
     "form",
     "input",
@@ -21,5 +21,8 @@
   "main": "index.js",
   "scripts": [
     "index.js"
+  ],
+  "remotes" : [
+    "https://raw.githubusercontent.com"
   ]
 }

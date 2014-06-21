@@ -1,0 +1,16 @@
+{
+  "name"          : "green-mesa-value",
+  "description"   : "Form field value getter and setter",
+  "url"           : "http://github.com/green-mesa/value",
+  "keywords"      : ["DOM", "value", "forms", "fields", "client", "browser"],
+  "author"        : "Vision Media",
+  "dependencies"  : {
+  },
+  "main"          : "index.js",
+  "version"       : "1.1.2",
+  "license"       : "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/green-mesa/value.git"
+  }
+}
